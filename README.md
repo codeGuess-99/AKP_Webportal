@@ -54,7 +54,7 @@ scale efficiently.
 
 ## ⚛️ Frontend (Next.js Usage)
 
-This portal uses **Next.js (v14.x)** for building a modern, performant
+This portal uses **Next.js (v16.2.4)** for building a modern, performant
 frontend.
 
 ### Why Next.js?
