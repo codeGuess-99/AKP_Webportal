@@ -29,38 +29,46 @@ function validateServerForm(data) {
 }
 
 function validateEmailConfig() {
-  const errors = [];
+  const missing = [];
 
   if (!process.env.GOOGLE_CLIENT_ID) {
-    errors.push("GOOGLE_CLIENT_ID");
+    missing.push("GOOGLE_CLIENT_ID");
   }
 
   if (!process.env.GOOGLE_CLIENT_SECRET) {
-    errors.push("GOOGLE_CLIENT_SECRET");
+    missing.push("GOOGLE_CLIENT_SECRET");
   }
 
   if (!process.env.GOOGLE_REFRESH_TOKEN) {
-    errors.push("GOOGLE_REFRESH_TOKEN");
+    missing.push("GOOGLE_REFRESH_TOKEN");
   }
 
   if (!process.env.GMAIL_FROM_EMAIL) {
-    errors.push("GMAIL_FROM_EMAIL");
+    missing.push("GMAIL_FROM_EMAIL");
   }
 
   if (!process.env.CONTACT_TO_EMAIL) {
-    errors.push("CONTACT_TO_EMAIL");
+    missing.push("CONTACT_TO_EMAIL");
   }
 
-  return errors;
+  return missing;
 }
 
-function escapeHtml(value) {
+function escapeHtml(value = "") {
   return value
+    .toString()
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function sanitizeHeader(value = "") {
+  return value
+    .toString()
+    .replace(/[\r\n]/g, " ")
+    .trim();
 }
 
 function encodeBase64Url(value) {
@@ -71,13 +79,51 @@ function encodeBase64Url(value) {
     .replace(/=+$/, "");
 }
 
-function createEmailMessage(data) {
-  const fromEmail = process.env.GMAIL_FROM_EMAIL;
-  const toEmail = process.env.CONTACT_TO_EMAIL;
+function createMimeMessage({
+  fromName,
+  fromEmail,
+  toEmail,
+  replyTo,
+  subject,
+  textBody,
+  htmlBody,
+}) {
+  const boundary = `aureon_boundary_${Date.now()}_${Math.random()
+    .toString(36)
+    .slice(2)}`;
 
-  const subject = `New Contact Inquiry: ${data.service}`;
+  const headers = [
+    `From: "${sanitizeHeader(fromName)}" <${sanitizeHeader(fromEmail)}>`,
+    `To: ${sanitizeHeader(toEmail)}`,
+    replyTo ? `Reply-To: ${sanitizeHeader(replyTo)}` : null,
+    `Subject: ${sanitizeHeader(subject)}`,
+    "MIME-Version: 1.0",
+    `Content-Type: multipart/alternative; boundary="${boundary}"`,
+  ].filter(Boolean);
 
-  const plainTextBody = `
+  const message = [
+    ...headers,
+    "",
+    `--${boundary}`,
+    'Content-Type: text/plain; charset="UTF-8"',
+    "Content-Transfer-Encoding: 7bit",
+    "",
+    textBody,
+    "",
+    `--${boundary}`,
+    'Content-Type: text/html; charset="UTF-8"',
+    "Content-Transfer-Encoding: 7bit",
+    "",
+    htmlBody,
+    "",
+    `--${boundary}--`,
+  ].join("\r\n");
+
+  return encodeBase64Url(message);
+}
+
+function createInternalNotificationEmail(data) {
+  const textBody = `
 New Contact Form Inquiry
 
 Name: ${data.name}
@@ -105,35 +151,79 @@ ${data.message}
     </div>
   `.trim();
 
-  const boundary = `aureon_boundary_${Date.now()}`;
-
-  const message = [
-    `From: "Aureon Systems Website" <${fromEmail}>`,
-    `To: ${toEmail}`,
-    `Reply-To: ${data.email}`,
-    `Subject: ${subject}`,
-    "MIME-Version: 1.0",
-    `Content-Type: multipart/alternative; boundary="${boundary}"`,
-    "",
-    `--${boundary}`,
-    'Content-Type: text/plain; charset="UTF-8"',
-    "Content-Transfer-Encoding: 7bit",
-    "",
-    plainTextBody,
-    "",
-    `--${boundary}`,
-    'Content-Type: text/html; charset="UTF-8"',
-    "Content-Transfer-Encoding: 7bit",
-    "",
+  return createMimeMessage({
+    fromName: "Aureon Systems Website",
+    fromEmail: process.env.GMAIL_FROM_EMAIL,
+    toEmail: process.env.CONTACT_TO_EMAIL,
+    replyTo: data.email,
+    subject: `New Contact Inquiry: ${data.service}`,
+    textBody,
     htmlBody,
-    "",
-    `--${boundary}--`,
-  ].join("\r\n");
-
-  return encodeBase64Url(message);
+  });
 }
 
-async function sendEmailWithGmailApi(data) {
+function createUserConfirmationEmail(data) {
+  const textBody = `
+Hi ${data.name},
+
+Thank you for contacting Aureon Systems LLC.
+
+We have received your inquiry and our team will review your message. Someone from our team will follow up with you soon.
+
+Inquiry Summary:
+Name: ${data.name}
+Company: ${data.company || "Not provided"}
+Email: ${data.email}
+Service Interest: ${data.service}
+
+Message:
+${data.message}
+
+Regards,
+Aureon Systems LLC
+  `.trim();
+
+  const htmlBody = `
+    <div style="font-family: Arial, sans-serif; line-height: 1.7; color: #111827;">
+      <h2 style="margin: 0 0 16px;">Thank you for contacting Aureon Systems LLC</h2>
+
+      <p>Hi ${escapeHtml(data.name)},</p>
+
+      <p>
+        We have received your inquiry and our team will review your message.
+        Someone from our team will follow up with you soon.
+      </p>
+
+      <div style="margin: 24px 0; padding: 18px; border: 1px solid #e5e7eb; border-radius: 12px; background: #f9fafb;">
+        <h3 style="margin: 0 0 12px;">Inquiry Summary</h3>
+
+        <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
+        <p><strong>Company:</strong> ${escapeHtml(data.company || "Not provided")}</p>
+        <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+        <p><strong>Service Interest:</strong> ${escapeHtml(data.service)}</p>
+
+        <hr style="margin: 18px 0; border: none; border-top: 1px solid #e5e7eb;" />
+
+        <p style="margin-bottom: 6px;"><strong>Message:</strong></p>
+        <p style="white-space: pre-line;">${escapeHtml(data.message)}</p>
+      </div>
+
+      <p>Regards,<br />Aureon Systems LLC</p>
+    </div>
+  `.trim();
+
+  return createMimeMessage({
+    fromName: "Aureon Systems LLC",
+    fromEmail: process.env.GMAIL_FROM_EMAIL,
+    toEmail: data.email,
+    replyTo: process.env.CONTACT_TO_EMAIL,
+    subject: "We received your inquiry | Aureon Systems LLC",
+    textBody,
+    htmlBody,
+  });
+}
+
+async function getGmailClient() {
   const oauth2Client = new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
@@ -143,13 +233,13 @@ async function sendEmailWithGmailApi(data) {
     refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
   });
 
-  const gmail = google.gmail({
+  return google.gmail({
     version: "v1",
     auth: oauth2Client,
   });
+}
 
-  const raw = createEmailMessage(data);
-
+async function sendGmailMessage(gmail, raw) {
   const response = await gmail.users.messages.send({
     userId: "me",
     requestBody: {
@@ -197,13 +287,28 @@ export async function submitContactForm(formData) {
   console.log("Contact form data received on server:", data);
 
   try {
-    const gmailResponse = await sendEmailWithGmailApi(data);
+    const gmail = await getGmailClient();
 
-    console.log("Gmail API email sent successfully:", gmailResponse);
+    const internalEmailRaw = createInternalNotificationEmail(data);
+    const confirmationEmailRaw = createUserConfirmationEmail(data);
+
+    const internalEmailResponse = await sendGmailMessage(
+      gmail,
+      internalEmailRaw,
+    );
+
+    const confirmationEmailResponse = await sendGmailMessage(
+      gmail,
+      confirmationEmailRaw,
+    );
+
+    console.log("Internal contact email sent:", internalEmailResponse);
+    console.log("User confirmation email sent:", confirmationEmailResponse);
 
     return {
       success: true,
-      message: "Form data received successfully.",
+      message:
+        "Form data received successfully. A confirmation email has been sent.",
       data,
     };
   } catch (error) {
