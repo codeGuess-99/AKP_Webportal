@@ -1,3 +1,4 @@
+import ContactForm from "@/components/ContactForm";
 import Fx from "@/components/fx";
 
 export const metadata = {
@@ -10,7 +11,7 @@ export default function ContactPage() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-background text-text">
       {/* <ContactBackgroundFX /> */}
-      <Fx />
+      {/* <Fx /> */}
 
       <section className="relative z-10 px-6 pt-32 pb-20 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-7xl">
@@ -124,7 +125,7 @@ export default function ContactPage() {
                   preferred backend, CRM, or email service.
                 </p>
 
-                <form className="mt-8 space-y-5">
+                {/* <form className="mt-8 space-y-5">
                   <div className="grid gap-5 sm:grid-cols-2">
                     <Field label="Name" name="name" placeholder="Your name" />
                     <Field
@@ -169,7 +170,8 @@ export default function ContactPage() {
                   >
                     Email Our Team
                   </a>
-                </form>
+                </form> */}
+                <ContactForm />
               </div>
             </div>
           </div>
