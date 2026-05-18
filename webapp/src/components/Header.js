@@ -32,12 +32,12 @@ function Header() {
 
         <NavLinks />
 
-        <a
-          href="/#contact"
+        <Link
+          href="/contact"
           className="hidden rounded-full border border-card-border bg-card-soft px-5 py-2.5 text-sm font-semibold text-primary-light shadow-glow-soft backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-card-border-hover hover:bg-button-primary hover:text-button-text hover:shadow-button sm:inline-flex"
         >
           Get Started
-        </a>
+        </Link>
       </nav>
     </header>
   );

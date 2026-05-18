@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const metadata = {
   title: "About | Aureon Systems LLC",
   description:
@@ -164,12 +166,12 @@ export default function AboutPage() {
               </h2>
             </div>
 
-            <a
-              href="/#contact"
+            <Link
+              href="/contact"
               className="rounded-full bg-button-primary px-8 py-4 text-center font-semibold text-button-text shadow-button transition duration-300 hover:-translate-y-1 hover:shadow-glow"
             >
               Start a Conversation
-            </a>
+            </Link>
           </div>
         </div>
       </section>

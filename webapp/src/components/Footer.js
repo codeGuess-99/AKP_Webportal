@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-card-border bg-background-deep px-6 py-12 sm:px-10 lg:px-20">
@@ -38,12 +40,12 @@ function Footer() {
               Terms
             </a>
 
-            <a
-              href="#contact"
+            <Link
+              href="/contact"
               className="transition duration-300 hover:text-primary-light"
             >
               Contact
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -53,7 +55,7 @@ function Footer() {
           </p>
 
           <div className="flex flex-col gap-3 leading-6">
-            <p>919-914-1293</p>
+            <p>+1 919-914-1293</p>
             <p className="break-words">corporateservices@kazanc.app</p>
             <p>1121, Lowland Street, Apex, NC - 27523</p>
           </div>

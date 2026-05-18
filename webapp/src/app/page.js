@@ -156,12 +156,12 @@ export default function Home() {
               </h2>
             </div>
 
-            <a
-              href="mailto:Corporateservices@kazanc.app"
+            <Link
+              href="/contact"
               className="rounded-full bg-button-primary px-8 py-4 text-center font-semibold text-button-text shadow-button transition duration-300 hover:-translate-y-1 hover:shadow-glow"
             >
               Contact Us
-            </a>
+            </Link>
           </div>
         </div>
       </section>

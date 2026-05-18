@@ -1,5 +1,6 @@
 import ContactForm from "@/components/ContactForm";
 import Fx from "@/components/fx";
+import Link from "next/link";
 
 export const metadata = {
   title: "Contact | Aureon Systems LLC",
@@ -61,14 +62,14 @@ export default function ContactPage() {
             <div className="mt-10 space-y-8">
               <ContactDetail
                 label="Phone"
-                value="919-914-1293"
-                href="tel:9199141293"
+                value="+1 919-914-1293"
+                // href="tel:9199141293"
               />
 
               <ContactDetail
                 label="Email"
-                value="Corporateservices@kazanc.app"
-                href="mailto:Corporateservices@kazanc.app"
+                value="corporateservices@kazanc.app"
+                // href="mailto:Corporateservices@kazanc.app"
               />
 
               <ContactDetail
@@ -105,7 +106,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="relative">
+          <div className="relative" id="contact">
             <div className="absolute -inset-4 rounded-[2.5rem] bg-primary-light/10 blur-3xl" />
 
             <div className="relative overflow-hidden rounded-[2.5rem] border border-card-border bg-card-glass p-6 shadow-card backdrop-blur-xl sm:p-8">
@@ -254,7 +255,7 @@ export default function ContactPage() {
             </div>
 
             <a
-              href="mailto:Corporateservices@kazanc.app"
+              href="#contact"
               className="inline-flex rounded-full bg-button-primary px-8 py-4 text-center font-semibold text-button-text shadow-button transition duration-300 hover:-translate-y-1 hover:shadow-glow"
             >
               Contact Aureon
@@ -308,7 +309,11 @@ function ContactDetail({ label, value, href }) {
     );
   }
 
-  return <div className="border-l border-card-border pl-6">{content}</div>;
+  return (
+    <div className="border-l border-card-border pl-6 hover:border-primary-light">
+      {content}
+    </div>
+  );
 }
 
 function ProcessLine({ title, description }) {
