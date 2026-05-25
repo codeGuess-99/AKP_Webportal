@@ -161,16 +161,6 @@ function NavLinks() {
             <span>Contact</span>
             <span className="h-1.5 w-1.5 rounded-full bg-card-border transition duration-300 group-hover:bg-primary-light" />
           </Link>
-
-          <div className="mt-3 border-t border-card-border pt-3">
-            <Link
-              href="/#contact"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center rounded-full bg-button-primary px-5 py-3 text-sm font-semibold text-button-text shadow-button transition duration-300 hover:-translate-y-0.5 hover:shadow-glow"
-            >
-              Get Started
-            </Link>
-          </div>
         </nav>
       </div>
     </div>
