@@ -3,9 +3,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-text">
-      {/* <BackgroundFX /> */}
-
+    <main className="relative min-h-screen overflow-hidden text-text">
       <section className="relative isolate px-6 pt-28 pb-24 sm:px-10 lg:px-20">
         <Image
           src="/bg-blue-2.png"
@@ -14,15 +12,6 @@ export default function Home() {
           priority
           className="-z-20 object-cover opacity-50 mix-blend-screen"
         />
-
-        {/* <div className="absolute inset-0 -z-10 bg-background-overlay" />
-
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-primary-dark/40 blur-3xl" />
-          <div className="absolute right-0 top-60 h-[360px] w-[360px] rounded-full bg-primary-light/20 blur-3xl" />
-          <div className="absolute bottom-0 left-10 h-[280px] w-[280px] rounded-full bg-accent-cyan/15 blur-3xl" />
-        </div> */}
-
         <div className="relative z-10 mx-auto max-w-7xl">
           <div className="max-w-5xl animate-fade-up">
             <p className="mb-5 inline-flex rounded-full border border-card-border bg-highlight-soft px-4 py-2 text-sm font-medium text-primary-light shadow-glow-soft">
@@ -199,46 +188,5 @@ function ServiceCard({ number, title, description }) {
         </Link>
       </div>
     </article>
-  );
-}
-
-function BackgroundFX() {
-  const stars = [
-    ["8%", "16%", "2px", "0s"],
-    ["18%", "42%", "1px", "1.2s"],
-    ["28%", "24%", "2px", "2s"],
-    ["38%", "72%", "1px", "0.8s"],
-    ["52%", "18%", "2px", "1.8s"],
-    ["64%", "56%", "1px", "2.4s"],
-    ["74%", "28%", "2px", "1.4s"],
-    ["86%", "68%", "1px", "0.6s"],
-    ["92%", "22%", "2px", "2.8s"],
-  ];
-
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 star-field opacity-35" />
-
-      <div className="absolute left-1/2 top-[24%] h-[260px] w-[120vw] -translate-x-1/2 -rotate-12 bg-galaxy-glow opacity-50 blur-sm animate-galaxy-drift" />
-
-      <div className="absolute left-[18%] top-[18%] h-72 w-72 rounded-full bg-primary-dark/20 blur-3xl" />
-      <div className="absolute right-[12%] top-[26%] h-80 w-80 rounded-full bg-primary-light/15 blur-3xl" />
-      <div className="absolute bottom-[12%] left-[30%] h-72 w-72 rounded-full bg-accent-cyan/10 blur-3xl" />
-
-      {stars.map(([left, top, size, delay], index) => (
-        <span
-          key={index}
-          className="absolute rounded-full bg-secondary-light animate-star-twinkle"
-          style={{
-            left,
-            top,
-            width: size,
-            height: size,
-            animationDelay: delay,
-            boxShadow: "0 0 14px rgba(69, 193, 244, 0.85)",
-          }}
-        />
-      ))}
-    </div>
   );
 }

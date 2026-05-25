@@ -1,6 +1,4 @@
 import ContactForm from "@/components/ContactForm";
-import Fx from "@/components/fx";
-import Link from "next/link";
 
 export const metadata = {
   title: "Contact | Aureon Systems LLC",
@@ -10,10 +8,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-text">
-      {/* <ContactBackgroundFX /> */}
-      {/* <Fx /> */}
-
+    <main className="relative min-h-screen overflow-hidden text-text">
       <section className="relative z-10 px-6 pt-32 pb-20 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-4xl">
@@ -38,7 +33,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
       <section className="relative z-10 px-6 pb-24 sm:px-10 lg:px-20">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
@@ -178,7 +172,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
       <section className="relative z-10 border-y border-card-border bg-background-deep/80 px-6 py-24 backdrop-blur sm:px-10 lg:px-20">
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute left-[-12%] top-12 h-32 w-[70%] -rotate-6 opacity-[0.08]">
@@ -240,7 +233,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
       <section className="relative z-10 px-6 py-24 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-7xl border-y border-card-border py-14">
           <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-center">
@@ -354,175 +346,6 @@ function EngagementPanel({ number, title, description }) {
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function ContactBackgroundFX() {
-  const particles = Array.from({ length: 140 }, (_, index) => {
-    const left = `${(index * 37) % 100}%`;
-    const top = `${(index * 53) % 100}%`;
-    const size = index % 5 === 0 ? "2.5px" : index % 3 === 0 ? "2px" : "1px";
-    const opacity = 0.22 + ((index * 11) % 45) / 100;
-    const delay = `${(index % 18) * 0.22}s`;
-    const duration = `${5.5 + (index % 9) * 0.45}s`;
-    const driftX = `${index % 2 === 0 ? 12 + (index % 18) : -12 - (index % 18)}px`;
-    const driftY = `${-18 - (index % 34)}px`;
-
-    return {
-      left,
-      top,
-      size,
-      opacity,
-      delay,
-      duration,
-      driftX,
-      driftY,
-    };
-  });
-
-  const microParticles = Array.from({ length: 120 }, (_, index) => {
-    const left = `${(index * 29 + 13) % 100}%`;
-    const top = `${(index * 41 + 7) % 100}%`;
-    const opacity = 0.12 + ((index * 7) % 28) / 100;
-    const delay = `${(index % 20) * 0.18}s`;
-    const duration = `${7 + (index % 8) * 0.5}s`;
-
-    return {
-      left,
-      top,
-      opacity,
-      delay,
-      duration,
-    };
-  });
-
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(69,193,244,0.1),transparent_30%),linear-gradient(180deg,rgba(0,0,6,0)_0%,rgba(1,8,30,0.55)_48%,rgba(0,0,6,0)_100%)]" />
-
-      <div className="absolute left-[-18%] top-[10%] h-20 w-[76%] -rotate-10 opacity-[0.14]">
-        <div className="h-full w-full bg-[linear-gradient(90deg,transparent_0%,rgba(69,193,244,0.28)_20%,rgba(244,248,255,0.08)_50%,rgba(69,193,244,0.24)_80%,transparent_100%)] [clip-path:polygon(0_45%,8%_12%,18%_45%,28%_12%,38%_45%,48%_12%,58%_45%,68%_12%,78%_45%,88%_12%,100%_45%,100%_68%,88%_35%,78%_68%,68%_35%,58%_68%,48%_35%,38%_68%,28%_35%,18%_68%,8%_35%,0_68%)]" />
-      </div>
-
-      <div className="absolute left-[42%] top-[34%] h-24 w-[84%] rotate-12 opacity-[0.12]">
-        <div className="h-full w-full bg-[linear-gradient(90deg,transparent_0%,rgba(7,143,236,0.28)_20%,rgba(244,248,255,0.08)_50%,rgba(0,213,255,0.18)_80%,transparent_100%)] [clip-path:polygon(0_45%,8%_12%,18%_45%,28%_12%,38%_45%,48%_12%,58%_45%,68%_12%,78%_45%,88%_12%,100%_45%,100%_68%,88%_35%,78%_68%,68%_35%,58%_68%,48%_35%,38%_68%,28%_35%,18%_68%,8%_35%,0_68%)]" />
-      </div>
-
-      <div className="absolute left-[-22%] top-[68%] h-24 w-[92%] rotate-10 opacity-[0.1]">
-        <div className="h-full w-full bg-[linear-gradient(90deg,transparent_0%,rgba(69,193,244,0.22)_20%,rgba(244,248,255,0.07)_50%,rgba(7,143,236,0.22)_80%,transparent_100%)] [clip-path:polygon(0_45%,8%_12%,18%_45%,28%_12%,38%_45%,48%_12%,58%_45%,68%_12%,78%_45%,88%_12%,100%_45%,100%_68%,88%_35%,78%_68%,68%_35%,58%_68%,48%_35%,38%_68%,28%_35%,18%_68%,8%_35%,0_68%)]" />
-      </div>
-
-      {microParticles.map((particle, index) => (
-        <span
-          key={`micro-particle-${index}`}
-          className="contact-micro-particle absolute rounded-full bg-white"
-          style={{
-            left: particle.left,
-            top: particle.top,
-            opacity: particle.opacity,
-            animationDelay: particle.delay,
-            animationDuration: particle.duration,
-          }}
-        />
-      ))}
-
-      {particles.map((particle, index) => (
-        <span
-          key={`particle-${index}`}
-          className="contact-particle absolute rounded-full bg-white"
-          style={{
-            left: particle.left,
-            top: particle.top,
-            width: particle.size,
-            height: particle.size,
-            opacity: particle.opacity,
-            "--delay": particle.delay,
-            "--duration": particle.duration,
-            "--drift-x": particle.driftX,
-            "--drift-y": particle.driftY,
-          }}
-        />
-      ))}
-
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-background to-transparent" />
-
-      <style>
-        {`
-          .contact-particle {
-            box-shadow:
-              0 0 10px rgba(244, 248, 255, 0.85),
-              0 0 22px rgba(69, 193, 244, 0.4);
-            animation:
-              contactParticleFloat var(--duration) ease-in-out var(--delay) infinite,
-              contactParticleTwinkle 2.8s ease-in-out var(--delay) infinite;
-          }
-
-          .contact-micro-particle {
-            width: 1px;
-            height: 1px;
-            box-shadow:
-              0 0 8px rgba(244, 248, 255, 0.7),
-              0 0 14px rgba(69, 193, 244, 0.25);
-            animation:
-              contactMicroFloat ease-in-out infinite,
-              contactMicroTwinkle 2.4s ease-in-out infinite;
-          }
-
-          @keyframes contactParticleFloat {
-            0% {
-              transform: translate3d(0, 0, 0) scale(0.75);
-            }
-
-            50% {
-              transform: translate3d(var(--drift-x), var(--drift-y), 0) scale(1.25);
-            }
-
-            100% {
-              transform: translate3d(0, 0, 0) scale(0.75);
-            }
-          }
-
-          @keyframes contactParticleTwinkle {
-            0%,
-            100% {
-              filter: brightness(0.75);
-            }
-
-            50% {
-              filter: brightness(2);
-            }
-          }
-
-          @keyframes contactMicroFloat {
-            0% {
-              transform: translate3d(0, 0, 0);
-            }
-
-            50% {
-              transform: translate3d(8px, -18px, 0);
-            }
-
-            100% {
-              transform: translate3d(0, 0, 0);
-            }
-          }
-
-          @keyframes contactMicroTwinkle {
-            0%,
-            100% {
-              opacity: 0.18;
-              filter: brightness(0.8);
-            }
-
-            50% {
-              opacity: 0.75;
-              filter: brightness(1.9);
-            }
-          }
-        `}
-      </style>
     </div>
   );
 }

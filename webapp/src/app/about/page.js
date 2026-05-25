@@ -8,9 +8,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-text">
-      <AboutBackgroundFX />
-
+    <main className="relative min-h-screen overflow-hidden text-text">
       <section className="relative z-10 px-6 pt-32 pb-20 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-4xl animate-fade-up">
@@ -41,7 +39,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       <section className="relative z-10 border-y border-card-border bg-background-deep/90 px-6 py-24 backdrop-blur sm:px-10 lg:px-20">
         <div className="absolute inset-0 -z-10 space-grid opacity-20" />
 
@@ -59,7 +56,6 @@ export default function AboutPage() {
           />
         </div>
       </section>
-
       <section className="relative z-10 px-6 py-24 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
@@ -107,7 +103,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       <section className="relative z-10 px-6 pb-24 sm:px-10 lg:px-20">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
@@ -149,7 +144,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
       <section className="relative z-10 px-6 pb-24 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-card-border bg-card-glass p-8 shadow-glow-lg backdrop-blur-xl sm:p-12 lg:p-16">
           <div className="absolute inset-0 -z-10 bg-galaxy-glow opacity-30" />
@@ -231,47 +225,6 @@ function ProcessItem({ step, description }) {
           <p className="mt-2 leading-7 text-text-body">{description}</p>
         </div>
       </div>
-    </div>
-  );
-}
-
-function AboutBackgroundFX() {
-  const stars = [
-    ["8%", "18%", "2px", "0s"],
-    ["16%", "48%", "1px", "1.2s"],
-    ["26%", "28%", "2px", "2s"],
-    ["38%", "76%", "1px", "0.8s"],
-    ["52%", "20%", "2px", "1.8s"],
-    ["64%", "58%", "1px", "2.4s"],
-    ["74%", "30%", "2px", "1.4s"],
-    ["86%", "70%", "1px", "0.6s"],
-    ["92%", "24%", "2px", "2.8s"],
-  ];
-
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 star-field opacity-30" />
-
-      <div className="absolute left-1/2 top-[22%] h-[280px] w-[120vw] -translate-x-1/2 -rotate-12 bg-galaxy-glow opacity-45 blur-sm animate-galaxy-drift" />
-
-      <div className="absolute left-[10%] top-[12%] h-72 w-72 rounded-full bg-primary-dark/20 blur-3xl" />
-      <div className="absolute right-[8%] top-[26%] h-80 w-80 rounded-full bg-primary-light/15 blur-3xl" />
-      <div className="absolute bottom-[10%] left-[28%] h-72 w-72 rounded-full bg-accent-cyan/10 blur-3xl" />
-
-      {stars.map(([left, top, size, delay], index) => (
-        <span
-          key={index}
-          className="absolute rounded-full bg-secondary-light animate-star-twinkle"
-          style={{
-            left,
-            top,
-            width: size,
-            height: size,
-            animationDelay: delay,
-            boxShadow: "0 0 14px rgba(69, 193, 244, 0.85)",
-          }}
-        />
-      ))}
     </div>
   );
 }
