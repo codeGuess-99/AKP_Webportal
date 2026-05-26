@@ -154,12 +154,22 @@ function NavLinks() {
           </Link>
 
           <Link
-            href="/#contact"
+            href="/contact"
             onClick={() => setIsOpen(false)}
-            className="group flex items-center justify-between rounded-2xl px-5 py-4 text-base font-medium text-text-muted transition duration-300 hover:bg-card-hover hover:text-primary-light"
+            className={`group flex items-center justify-between rounded-2xl px-5 py-4 text-base font-medium transition duration-300 hover:bg-card-hover hover:text-primary-light ${
+              pathname === "/contact"
+                ? "bg-highlight-soft text-primary-light"
+                : "text-text-muted"
+            }`}
           >
             <span>Contact</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-card-border transition duration-300 group-hover:bg-primary-light" />
+            <span
+              className={`h-1.5 w-1.5 rounded-full transition duration-300 ${
+                pathname === "/contact"
+                  ? "bg-primary-light shadow-glow"
+                  : "bg-card-border group-hover:bg-primary-light"
+              }`}
+            />{" "}
           </Link>
         </nav>
       </div>
