@@ -11,8 +11,8 @@ export default function ContactPage() {
     <main className="relative min-h-screen overflow-hidden text-text">
       <section className="relative z-10 px-6 pt-32 pb-20 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-7xl">
-          <div className="max-w-4xl">
-            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.35em] text-primary-light">
+          <div className="max-w-4xl animate-fade-up">
+            <p className="mb-5 inline-flex rounded-full border border-card-border bg-highlight-soft px-4 py-2 text-sm font-medium text-primary-light shadow-glow-soft">
               Contact Aureon Systems LLC
             </p>
 
@@ -120,52 +120,6 @@ export default function ContactPage() {
                   preferred backend, CRM, or email service.
                 </p>
 
-                {/* <form className="mt-8 space-y-5">
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <Field label="Name" name="name" placeholder="Your name" />
-                    <Field
-                      label="Company"
-                      name="company"
-                      placeholder="Company name"
-                    />
-                  </div>
-
-                  <Field
-                    label="Email"
-                    name="email"
-                    type="email"
-                    placeholder="you@example.com"
-                  />
-
-                  <Field
-                    label="Service Interest"
-                    name="service"
-                    placeholder="Software, AI, cloud, modernization..."
-                  />
-
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="mb-2 block text-sm font-medium text-text-body"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows="6"
-                      placeholder="Tell us about your project, goals, timeline, or current technical challenge."
-                      className="w-full resize-none rounded-2xl border border-card-border bg-background-deep px-4 py-3 text-text-title outline-none transition duration-300 placeholder:text-text-faint focus:border-primary-light focus:shadow-glow-soft"
-                    />
-                  </div>
-
-                  <a
-                    href="mailto:Corporateservices@kazanc.app?subject=Project Inquiry for Aureon Systems LLC"
-                    className="inline-flex w-full items-center justify-center rounded-full bg-button-primary px-8 py-4 text-center font-semibold text-button-text shadow-button transition duration-300 hover:-translate-y-1 hover:shadow-glow sm:w-auto"
-                  >
-                    Email Our Team
-                  </a>
-                </form> */}
                 <ContactForm />
               </div>
             </div>
@@ -259,27 +213,6 @@ export default function ContactPage() {
   );
 }
 
-function Field({ label, name, type = "text", placeholder }) {
-  return (
-    <div>
-      <label
-        htmlFor={name}
-        className="mb-2 block text-sm font-medium text-text-body"
-      >
-        {label}
-      </label>
-
-      <input
-        id={name}
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        className="w-full rounded-2xl border border-card-border bg-background-deep px-4 py-3 text-text-title outline-none transition duration-300 placeholder:text-text-faint focus:border-primary-light focus:shadow-glow-soft"
-      />
-    </div>
-  );
-}
-
 function ContactDetail({ label, value, href }) {
   const content = (
     <>
@@ -304,18 +237,6 @@ function ContactDetail({ label, value, href }) {
   return (
     <div className="border-l border-card-border pl-6 hover:border-primary-light">
       {content}
-    </div>
-  );
-}
-
-function ProcessLine({ title, description }) {
-  return (
-    <div className="relative pl-12 pb-10 last:pb-0">
-      <span className="absolute left-[11px] top-1 h-3 w-3 rounded-full bg-primary-light shadow-glow" />
-
-      <h3 className="text-xl font-semibold text-text-title">{title}</h3>
-
-      <p className="mt-2 max-w-2xl leading-7 text-text-body">{description}</p>
     </div>
   );
 }
