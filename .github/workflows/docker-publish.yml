@@ -11,6 +11,7 @@ permissions:
 
 env:
   REGISTRY: ghcr.io
+  IMAGE_NAME: next-js-app
 
 jobs:
   build-and-push:
@@ -25,7 +26,8 @@ jobs:
         id: image
         shell: bash
         run: |
-          IMAGE="${REGISTRY}/${GITHUB_REPOSITORY}"
+          OWNER="${GITHUB_REPOSITORY_OWNER}"
+          IMAGE="${REGISTRY}/${OWNER}/${IMAGE_NAME}"
           echo "image=${IMAGE,,}" >> "$GITHUB_OUTPUT"
 
       - name: Set up Docker Buildx
@@ -50,7 +52,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: .
+          context: ./webapp
+          file: ./webapp/Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
