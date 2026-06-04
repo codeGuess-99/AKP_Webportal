@@ -1,8 +1,43 @@
+## Prerequisites
+
+This project requires **Node.js version 24.15.0 LTS**. Follow these steps to install it:
+
+### Option 1: Using NVM (Recommended)
+
+If you use Node Version Manager, run the following commands in your terminal:
+
+```bash
+nvm install 24.15.0
+nvm use 24.15.0
+```
+
+### Option 2: Manual Installation
+
+1. Go to the [Node.js Downloads Page](https://nodejs.org/en/download/archive/v24.15.0).
+2. Download the installer for your operating system.
+3. Run the installer and verify the installation in your terminal:
+
+```bash
+node -v # Should output v24.15.0
+npm -v  # Verifies npm is also installed
+```
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+Change Directory into webapp
+
+run this to install dependencies:
+
+```bash
+npm install
+
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
