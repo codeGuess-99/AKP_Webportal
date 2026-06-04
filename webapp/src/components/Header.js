@@ -22,7 +22,7 @@ function Header() {
 
           <div>
             <p className="text-metal-readable text-lg font-bold leading-none">
-              Aureon Systems LLC
+              Docker Publish with github actions
             </p>
             <p className="mt-1 text-xs font-medium text-primary-light">
               Tailor | Automate | Scale
