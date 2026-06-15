@@ -8,24 +8,19 @@ function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between">
         <Link href="/" className="group flex items-center gap-3">
           <div className="relative">
-            <div className="absolute inset-0 rounded-full bg-primary-light/25 blur-xl transition duration-300 group-hover:bg-primary-light/40" />
-
             <Image
               src="/Aureon-systems-icon-v2.png"
               alt="logo"
               width={70}
               height={70}
               priority
-              className="relative z-10 drop-shadow-[0_0_18px_rgba(69,193,244,0.28)]"
+              className="relative z-10"
             />
           </div>
 
           <div>
             <p className="text-metal-readable text-lg font-bold leading-none">
               Aureon Systems LLC
-            </p>
-            <p className="mt-1 text-xs font-medium text-primary-light">
-              Tailor | Automate | Scale
             </p>
           </div>
         </Link>

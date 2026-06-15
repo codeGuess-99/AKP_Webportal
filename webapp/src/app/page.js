@@ -12,12 +12,8 @@ export default function Home() {
           priority
           className="-z-20 object-cover opacity-50 mix-blend-screen"
         />
-        <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="relative z-10 mx-auto mt-15 max-w-7xl">
           <div className="max-w-5xl animate-fade-up">
-            <p className="mb-5 inline-flex rounded-full border border-card-border bg-highlight-soft px-4 py-2 text-sm font-medium text-primary-light shadow-glow-soft">
-              Tailor | Automate | Scale
-            </p>
-
             <h1 className="text-5xl font-bold tracking-tight text-text-title sm:text-6xl lg:text-7xl">
               Tailored IT solutions that help businesses{" "}
               <span className="text-primary-light">automate</span> and scale.
