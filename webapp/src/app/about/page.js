@@ -12,7 +12,7 @@ export default function AboutPage() {
       <section className="relative z-10 px-6 pt-32 pb-20 sm:px-10 lg:px-20">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-4xl animate-fade-up">
-            <p className="mb-5 inline-flex rounded-full border border-card-border bg-highlight-soft px-4 py-2 text-sm font-medium text-primary-light shadow-glow-soft">
+            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.35em] text-primary-light">
               About Aureon Systems LLC
             </p>
 
