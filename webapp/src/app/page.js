@@ -86,7 +86,7 @@ export default function Home() {
 
       <section className="relative px-6 py-24 sm:px-10 lg:px-20">
         {/* <BackgroundFX /> */}
-        <div className="absolute inset-0 -z-10 bg-galaxy-glow opacity-30 animate-galaxy-drift" />
+        <div className="absolute inset-0 -z-10 bg-galaxy-glow opacity-30" />
 
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
