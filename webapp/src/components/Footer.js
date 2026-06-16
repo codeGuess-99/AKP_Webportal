@@ -26,12 +26,12 @@ function Footer() {
           </p>
 
           <div className="flex flex-col gap-3">
-            <a
-              href="#"
+            <Link
+              href="/privacy"
               className="transition duration-300 hover:text-primary-light"
             >
               Privacy
-            </a>
+            </Link>
 
             <a
               href="#"
