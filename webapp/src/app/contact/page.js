@@ -115,11 +115,6 @@ export default function ContactPage() {
                   Send us a brief message.
                 </h2>
 
-                <p className="mt-4 leading-7 text-text-body">
-                  This form is styled for the page. Connect it later to your
-                  preferred backend, CRM, or email service.
-                </p>
-
                 <ContactForm />
               </div>
             </div>
